@@ -1,3 +1,13 @@
+# Purpose
+
+Use this to "replay" amd switch sessions across codex/claude/pi.
+
+Ask your session for a full replay and to compact as needed.
+
+Main use case is to be able to switch providers in a long session, possibly due to quota exceeded or outages.
+
+AI slop below.
+
 # session-reader.py
 
 Read local **Pi v2/v3**, **Codex rollout**, and **Claude Code** JSONL sessions.
