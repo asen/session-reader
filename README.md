@@ -8,7 +8,7 @@ Main use case is to be able to switch providers in a long session, possibly due
 to quota exceeded or outages (or maybe a diff model/harness will be better suited
 for the task at hand).
 
-Encrypted stuff is skipped buut that's rarely a loss, IMHO.
+Encrypted stuff is skipped but that's rarely a loss, IMHO.
 
 LLM stuff below.
 
