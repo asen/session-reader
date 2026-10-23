@@ -8,6 +8,8 @@ Main use case is to be able to switch providers in a long session, possibly due
 to quota exceeded or outages (or maybe a diff model/harness will be better suited
 for the task at hand).
 
+It will not "see" any encrypted reasoning blobs but that's rarely a loss, IMHO.
+
 LLM stuff below.
 
 # session-reader.py
