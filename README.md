@@ -5,7 +5,7 @@ Use this to "replay" and switch sessions across codex/claude/pi.
 Ask your session for a full replay and to compact on its own as needed.
 
 Main use case is to be able to switch providers in a long session, possibly due
-to quota exceeded or outages (or maybe a diff mofrl/harness will be better suited
+to quota exceeded or outages (or maybe a diff model/harness will be better suited
 for the task at hand).
 
 LLM stuff below.
