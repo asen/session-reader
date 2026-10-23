@@ -1,12 +1,14 @@
 # Purpose
 
-Use this to "replay" amd switch sessions across codex/claude/pi.
+Use this to "replay" and switch sessions across codex/claude/pi.
 
-Ask your session for a full replay and to compact as needed.
+Ask your session for a full replay and to compact on its own as needed.
 
-Main use case is to be able to switch providers in a long session, possibly due to quota exceeded or outages.
+Main use case is to be able to switch providers in a long session, possibly due
+to quota exceeded or outages (or maybe a diff mofrl/harness will be better suited
+for the task at hand).
 
-AI slop below.
+LLM stuff below.
 
 # session-reader.py
 
