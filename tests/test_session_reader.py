@@ -211,6 +211,30 @@ class ReaderTests(unittest.TestCase):
             self.assertIn(value, text)
         self.assertNotIn("SECRET_CIPHER", text)
 
+    def test_reasoning_text_blocks_require_thinking(self):
+        blocks = [{"type": "text", "text": "Public reply"},
+                  {"type": "reasoning_text", "text": "PRIVATE_BLOCK_REASONING"}]
+        pi_record = pi_message("a-reasoning", "", "assistant")
+        pi_record["message"]["content"] = blocks
+        cases = (
+            (self.codex_path, self.codex_records[0], response("message", role="assistant", content=blocks),
+             f"byte:{len(encode(self.codex_records[0]))}"),
+            (self.pi_path, self.pi_records[0], pi_record, "a-reasoning"),
+            (self.claude_path, self.claude_records[0], claude_message("c-reasoning", blocks, "assistant"), "c-reasoning"),
+        )
+        for path, header, record, entry_id in cases:
+            with self.subTest(format=path.parent):
+                self.write(path, [header, record])
+                for command in (("read", path), ("show", path, entry_id)):
+                    _, text, _ = read_parts(self.cli(*command).stdout.decode())
+                    self.assertIn("Public reply", text)
+                    self.assertNotIn("PRIVATE_BLOCK_REASONING", text)
+                    for flag in ("--thinking", "--raw"):
+                        _, text, _ = read_parts(self.cli(*command, flag).stdout.decode())
+                        self.assertIn("PRIVATE_BLOCK_REASONING", text)
+                self.assertEqual(len(self.search(path, "PRIVATE_BLOCK_REASONING")), 2)
+                self.assertEqual(len(self.search(path, "PRIVATE_BLOCK_REASONING", "--thinking")), 3)
+
     def test_raw_preserves_original_records(self):
         _, text, _ = self.read(None, "--raw")
         self.assertEqual(text.encode(), self.codex_path.read_bytes())

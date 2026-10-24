@@ -87,7 +87,8 @@ Ambiguous IDs are rejected rather than choosing the newest session.
   Pi retains its header-excluding entry count.
   `messages_by_role` counts canonical message records, not event mirrors.
 
-Saved plaintext reasoning is hidden unless `--thinking` is supplied. Encrypted
+Saved plaintext reasoning, including `reasoning_text` content blocks, is hidden
+unless `--thinking` is supplied. Encrypted
 reasoning is not decrypted. Accounting, opaque state, media, and unsupported
 payload details are omitted from the content view; `show --raw` exposes the
 original JSON record (with terminal control characters escaped).

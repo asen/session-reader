@@ -181,8 +181,11 @@ def content(value, options):
             parts.append(js(block))
             continue
         kind = block.get("type")
-        if kind in ("text", "input_text", "output_text", "summary_text", "reasoning_text", "Text", "inputText", "outputText"):
+        if kind in ("text", "input_text", "output_text", "summary_text", "Text", "inputText", "outputText"):
             parts.append(str(block.get("text", "")))
+        elif kind == "reasoning_text":
+            parts.append(str(block.get("text", "")) if options["thinking"] else
+                         "[reasoning text omitted; use --thinking]")
         elif kind == "toolCall":
             parts.append(f"[tool call {block.get('id')} | {block.get('name')}]\n" + js(block.get("arguments", {})))
         elif kind == "thinking":
